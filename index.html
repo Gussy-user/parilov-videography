@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Видеограф для бизнеса — Санкт-Петербург</title>
+  <meta name="description" content="Профессиональная видеосъёмка для бизнеса в Санкт-Петербурге: рекламные ролики, съёмка мероприятий, видео для соцсетей и обучение.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fbf4e6; /* very light brown-yellow */
+      --card:#f7efe0; /* slightly darker card */
+      --card-dark:#efe1c0; /* darker card for emphasis */
+      --accent:#ff4a00; /* bright red-orange */
+      --muted:#6b5846; /* warm muted brown */
+      --glass: rgba(16,12,6,0.06);
+      --text:#2b1f10;
+      --maxw:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#fbf6ec 0%, #f2ead7 100%);
+      color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.85);backdrop-filter: blur(6px);border-bottom:1px solid rgba(16,12,6,0.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-photo{width:56px;height:56px;border-radius:8px;object-fit:cover;background:#fff;border:1px solid rgba(16,12,6,0.06)}
+    nav ul{display:flex;gap:14px;align-items:center;margin:0;padding:0;list-style:none}
+    nav li a{padding:12px 14px;border-radius:10px;font-weight:600;color:var(--text)}
+    .cta{background:var(--accent);color:white;padding:10px 16px;border-radius:12px;font-weight:700}
+    .mobile-toggle{display:none;font-size:20px;border:0;background:transparent}
+
+    /* Hero */
+    .hero{position:relative;min-height:62vh;display:grid;align-items:center;padding:36px 0}
+    .hero-grid{display:grid;grid-template-columns:1fr 480px;gap:28px;align-items:center}
+    .hero-left h1{font-size:clamp(26px,4.2vw,42px);margin:0 0 12px}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .hero-actions{display:flex;gap:12px}
+    .secondary{background:transparent;border:1px solid rgba(16,12,6,0.06);padding:10px 14px;border-radius:10px;color:var(--text)}
+    .hero-card{background:var(--card);padding:10px;border-radius:12px;box-shadow: 0 8px 24px rgba(16,12,6,0.06);}
+
+    /* video preview */
+    .hero-video{border-radius:12px;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;height:300px;border:1px solid rgba(16,12,6,0.04)}
+    .hero-video video{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* sections */
+    section{padding:56px 0;border-top:1px solid rgba(16,12,6,0.04)}
+    section:first-of-type{border-top:0}
+    h2{margin:0 0 14px;font-size:20px}
+    .sub{color:var(--muted);margin-bottom:14px}
+
+    /* make clear separation: add title bar + spacing */
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .section-title::after{content:'';height:1px;background:rgba(16,12,6,0.03);flex:1;margin-left:18px}
+
+    /* services */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service{background:linear-gradient(180deg,var(--card),var(--card-dark));padding:18px;border-radius:14px;border:1px solid rgba(16,12,6,0.08);box-shadow:0 6px 18px rgba(16,12,6,0.03)}
+    .service h3{margin:8px 0 6px}
+    .service p{color:var(--muted);margin:0}
+
+    /* portfolio */
+    .filters{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+    .filter{background:var(--glass);padding:10px 12px;border-radius:12px;font-weight:600;cursor:pointer;color:var(--text)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+    /* card visuals: darker, clear edges and hover shadow */
+    .card{background:var(--card-dark);border-radius:12px;overflow:hidden;border:1px solid rgba(16,12,6,0.12);transition:transform .22s cubic-bezier(.2,.9,.3,1),box-shadow .22s cubic-bezier(.2,.9,.3,1)}
+    .card:hover{transform:translateY(-8px);box-shadow:0 22px 46px rgba(16,12,6,0.12)}
+
+    .thumb{height:200px;background:#e9dcc3;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(16,12,6,0.06)}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .case{padding:14px}
+    .case h4{margin:0 0 6px}
+    .case p{color:var(--muted);font-size:14px;margin:0}
+
+    /* about/process */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+    .tech-list{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:rgba(16,12,6,0.06);padding:8px 10px;border-radius:999px;font-weight:600;color:var(--text)}
+
+    /* testimonials */
+    .testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .test{background:var(--card-dark);padding:16px;border-radius:12px;border:1px solid rgba(16,12,6,0.12);transition:transform .18s ease,box-shadow .18s ease}
+    .test:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(16,12,6,0.10)}
+
+    /* blog */
+    .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .posts .card{background:var(--card-dark);border:1px solid rgba(16,12,6,0.12)}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:16px}
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea,select{background:transparent;border:1px solid rgba(16,12,6,0.10);padding:12px;border-radius:10px;color:var(--text)}
+    input:focus,textarea:focus,select:focus{box-shadow:0 8px 20px rgba(16,12,6,0.06);outline:none}
+    button[type=submit]{background:var(--accent);color:white;padding:12px;border-radius:10px;border:0;font-weight:700}
+
+    /* footer */
+    footer{padding:22px 0;border-top:1px solid rgba(16,12,6,0.06);color:var(--muted)}
+
+    /* responsiveness */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid,.posts{grid-template-columns:repeat(2,1fr)}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .about-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .hero-video{height:220px}
+    }
+    @media (max-width:760px){
+      nav ul{display:none}
+      .mobile-toggle{display:block}
+      .grid{grid-template-columns:1fr}
+      .posts{grid-template-columns:1fr}
+      .services{grid-template-columns:1fr}
+      .hero{padding:20px 0}
+      .hero-left h1{font-size:22px}
+      .brand-photo{width:48px;height:48px}
+      .cta{padding:10px 12px}
+      .filter{padding:12px}
+      input,textarea,select{font-size:16px;padding:14px}
+    }
+
+    /* small interactions */
+    .brand-photo, .cta, .filter, .service{transition:transform .18s ease, box-shadow .18s ease}
+    .brand-photo:hover{transform:translateY(-3px)}
+    .cta:hover{transform:translateY(-3px)}
+
+    /* modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(16,12,6,0.6);visibility:hidden;opacity:0;pointer-events:none;transition:opacity .2s}
+    .modal.open{visibility:visible;opacity:1;pointer-events:auto}
+    .modal-content{width:min(960px,96%);background:white;border-radius:10px;overflow:hidden}
+    .modal video{width:100%;height:100%;display:block}
+    .modal-close{position:absolute;right:22px;top:18px;background:transparent;border:0;color:var(--text);font-size:20px}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="assets/logo-placeholder.jpg" alt="Логотип" class="brand-photo">
+        <div>
+          <div style="font-weight:800;color:var(--text)">Видеограф СПб</div>
+          <div style="font-size:12px;color:var(--muted)">Для бизнеса — реклама • ивенты • соцсети</div>
+        </div>
+      </div>
+
+      <nav>
+        <button class="mobile-toggle" aria-label="Меню" onclick="toggleMenu()">☰</button>
+        <ul id="menu">
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#portfolio">Портфолио</a></li>
+          <li><a href="#process">Этапы</a></li>
+          <li><a href="#about">О себе</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <a class="cta" href="#contact">Получить смету</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <h1>Видео, которое продаёт. Снято в Санкт‑Петербурге.</h1>
+          <p class="sub">Рекламные ролики, промо для соцсетей, съёмка мероприятий и корпоративное видео — под ключ: от идеи до монтажа и передачи материалов.</p>
+          <div class="hero-actions">
+            <a class="cta" href="#contact">Обсудить проект</a>
+            <a class="secondary" href="#portfolio">Смотреть кейсы</a>
+          </div>
+          <div style="margin-top:18px;color:var(--muted);font-size:14px">Быстрое составление сметы — отправьте техзадание и получите ориентир цены в течение рабочего дня.</div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-video">
+            <!-- Замените src на своё видео. Сейчас — плейсхолдер. -->
+            <video autoplay muted loop playsinline poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'><rect width='100%' height='100%' fill='%2308141a'/><text x='50%' y='50%' fill='%23ffffff' font-size='22' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Ваш шоу‑рил (замените файл)</text></svg>">
+              <source src="video/hero.mp4" type="video/mp4">
+              <!-- fallback -->
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2>Услуги</h2>
+        <div class="sub">Мы работаем с бизнесом: продающие ролики, контент для соцсетей, трансляции ивентов и обучающие видео.</div>
+        <div class="services">
+          <div class="service">
+            <div style="font-size:18px;font-weight:800">Рекламные ролики</div>
+            <p>Короткие динамичные клипы для рекламы в YouTube, ВКонтакте и Instagram. Под ключ: сценарий, съёмка, монтаж.</p>
+          </div>
+          <div class="service">
+            <div style="font-size:18px;font-weight:800">Контент для соцсетей</div>
+            <p>Вертикальные видео, нарезки, превью для Reels и TikTok — быстрый цикл производства.</p>
+          </div>
+          <div class="service">
+            <div style="font-size:18px;font-weight:800">Съёмка мероприятий</div>
+            <p>Конференции, презентации, открытия и выставки — профессиональная команда и световое оборудование.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <h2>Портфолио</h2>
+        <div class="sub">Выборка проектов — рекламные кампании и кейсы для бизнеса в СПб.</div>
+
+        <div class="filters" role="tablist">
+          <button class="filter" data-filter="all" onclick="filterCases('all')">Все</button>
+          <button class="filter" data-filter="ad" onclick="filterCases('ad')">Реклама</button>
+          <button class="filter" data-filter="event" onclick="filterCases('event')">Ивенты</button>
+          <button class="filter" data-filter="smm" onclick="filterCases('smm')">Соцсети</button>
+        </div>
+
+        <div class="grid" id="portfolioGrid">
+          <!-- card 1 -->
+          <article class="card" data-type="ad">
+            <div class="thumb">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'><rect width='100%' height='100%' fill='%2308141a'/><text x='50%' y='50%' fill='%23ffffff' font-size='20' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Кейс: Рекламный ролик</text></svg>" alt="Кейс 1">
+            </div>
+            <div class="case">
+              <h4>Ролик для сети кафе</h4>
+              <p>Клиент: сеть кофеен. Задача — привлечь трафик на акцию. Результат: +22% посещаемости.</p>
+              <div style="margin-top:10px"><a href="#" onclick="openModal('video1.mp4');return false;" style="font-weight:700">Смотреть</a></div>
+            </div>
+          </article>
+
+          <!-- card 2 -->
+          <article class="card" data-type="event">
+            <div class="thumb">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'><rect width='100%' height='100%' fill='%2308141a'/><text x='50%' y='50%' fill='%23ffffff' font-size='20' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Кейс: Ивент</text></svg>" alt="Кейс 2">
+            </div>
+            <div class="case">
+              <h4>Съемка конференции</h4>
+              <p>Прямая трансляция, монтаж хайлайтов. Быстрая публикация — материалы в тот же день.</p>
+              <div style="margin-top:10px"><a href="#" onclick="openModal('video2.mp4');return false;" style="font-weight:700">Смотреть</a></div>
+            </div>
+          </article>
+
+          <!-- card 3 -->
+          <article class="card" data-type="smm">
+            <div class="thumb">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'><rect width='100%' height='100%' fill='%2308141a'/><text x='50%' y='50%' fill='%23ffffff' font-size='20' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Кейс: Соцсети</text></svg>" alt="Кейс 3">
+            </div>
+            <div class="case">
+              <h4>Короткие ролики для интернет‑магазина</h4>
+              <p>Серия рилсов с продуктами. Повысили CTR рекламных кампаний.</p>
+              <div style="margin-top:10px"><a href="#" onclick="openModal('video3.mp4');return false;" style="font-weight:700">Смотреть</a></div>
+            </div>
+          </article>
+
+          <!-- more cards placeholder -->
+          <article class="card" data-type="ad">
+            <div class="thumb">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'><rect width='100%' height='100%' fill='%2308141a'/><text x='50%' y='50%' fill='%23ffffff' font-size='20' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>Кейс: Промо</text></svg>" alt="Кейс 4">
+            </div>
+            <div class="case">
+              <h4>Проморолик</h4>
+              <p>Кратко и ярко — для посадочной страницы и рекламных сетей.</p>
+              <div style="margin-top:10px"><a href="#" onclick="openModal('video4.mp4');return false;" style="font-weight:700">Смотреть</a></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <h2>Этапы работы</h2>
+        <div class="sub">Прозрачный процесс — чтобы бизнесу было удобно планировать бюджет и результат.</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div class="chip">1. Заявка</div>
+          <div class="chip">2. Бриф и смета</div>
+          <div class="chip">3. Договор</div>
+          <div class="chip">4. Съёмка</div>
+          <div class="chip">5. Монтаж</div>
+          <div class="chip">6. Передача материалов</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2>О себе</h2>
+        <div class="about-grid">
+          <div>
+            <p class="sub">Я — видеограф из Санкт‑Петербурга. Работаю с компаниями: от стартапов до крупных сетей. Быстро адаптируюсь под бренд, умею выстраивать съёмочный процесс и давать контент, готовый к размещению в рекламе и соцсетях.</p>
+            <h3 style="margin-top:8px">Техника и софт</h3>
+            <div class="tech-list">
+              <span class="chip">Sony/Canon</span>
+              <span class="chip">Световое оборудование</span>
+              <span class="chip">Микрофоны Sennheiser</span>
+              <span class="chip">DaVinci Resolve / Premiere</span>
+            </div>
+
+            <h3 style="margin-top:12px">Почему выбирают</h3>
+            <ul style="color:var(--muted)">
+              <li>Опыт работы с бизнес-задачами</li>
+              <li>Скорость изготовления материалов</li>
+              <li>Прозрачный бюджет и гибкие пакеты</li>
+            </ul>
+          </div>
+          <div>
+            <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px">
+              <h3>Техзадание — быстро</h3>
+              <p style="color:var(--muted)">Отправьте краткое описание проекта и получите ориентир цены.</p>
+              <a class="cta" href="#contact">Отправить заявку</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <div class="container">
+        <h2>Отзывы</h2>
+        <div class="sub">Небольшая подборка отзывов от клиентов.</div>
+        <div class="testimonials">
+          <div class="test">
+            <strong>Мария, маркетолог</strong>
+            <p style="color:var(--muted)">«Отличная работа — ролик принёс продажи и новые лиды. Команда профессиональна и пунктуальна.»</p>
+          </div>
+          <div class="test">
+            <strong>Иван, директор</strong>
+            <p style="color:var(--muted)">«Сделали трансляцию конференции — всё прошло гладко. Спасибо за скорость монтажа.»</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="container">
+        <h2>Блог — полезные статьи</h2>
+        <div class="sub">Как использовать видео в маркетинге, примеры подготовки и лайфхаки для съёмки.</div>
+        <div class="posts">
+          <article class="card">
+            <div style="padding:12px">
+              <h4>Как подготовить команду к съёмке</h4>
+              <p style="color:var(--muted)">Короткие советы, которые экономят время на площадке.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div style="padding:12px">
+              <h4>5 форматов роликов для соцсетей</h4>
+              <p style="color:var(--muted)">Что работает в 2025 году и почему.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div style="padding:12px">
+              <h4>Сколько стоит реклама с видео</h4>
+              <p style="color:var(--muted)">Примерное ценообразование и как получить максимум ROI.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Контакты</h2>
+        <div class="sub">Пишите в Telegram/WhatsApp или оставьте заявку — отвечаю в течение рабочего дня.</div>
+        <div class="contact-grid">
+          <form onsubmit="handleSubmit(event)">
+            <input type="text" name="name" placeholder="Имя / компания" required>
+            <input type="tel" name="phone" placeholder="Телефон" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <select name="service">
+              <option value="reklama">Рекламный ролик</option>
+              <option value="smm">Контент для соцсетей</option>
+              <option value="event">Съёмка ивента</option>
+            </select>
+            <textarea name="message" rows="5" placeholder="Кратко о задаче (дата, бюджет, цель)"></textarea>
+            <button type="submit">Отправить заявку</button>
+          </form>
+
+          <aside style="background:var(--card);padding:18px;border-radius:12px">
+            <strong>Контакты</strong>
+            <p style="color:var(--muted)">Телефон: <a href="tel:+7812">+7 (812) XXX-XX-XX</a></p>
+            <p style="color:var(--muted)">Telegram / WhatsApp: <a href="#">@yourtg</a></p>
+            <p style="color:var(--muted)">Адрес: Санкт‑Петербург</p>
+            <div style="height:220px;margin-top:12px;background:#05101a;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted)">Карта (вставьте iFrame)</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div>© <strong>Видеограф СПб</strong> — видео для бизнеса • Санкт‑Петербург</div>
+      <div style="color:var(--muted)">Ссылки: <a href="#privacy">Политика конфиденциальности</a> • <a href="#terms">Условия</a></div>
+    </div>
+  </footer>
+
+  <!-- Modal for playing videos -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <video id="modalVideo" controls></video>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu(){
+      const menu = document.getElementById('menu');
+      if(getComputedStyle(menu).display === 'none'){
+        menu.style.display = 'flex';
+        menu.style.flexDirection = 'column';
+        menu.style.background = 'transparent';
+        menu.style.position = 'absolute';
+        menu.style.right = '20px';
+        menu.style.top = '64px';
+        menu.style.padding = '12px';
+        menu.style.gap = '8px';
+      } else {
+        menu.style.display = 'none';
+      }
+    }
+
+    function filterCases(type){
+      const cards = document.querySelectorAll('#portfolioGrid .card');
+      cards.forEach(c=>{
+        if(type === 'all' || c.dataset.type === type){
+          c.style.display = '';
+        } else {
+          c.style.display = 'none';
+        }
+      })
+    }
+
+    function openModal(src){
+      const modal = document.getElementById('modal');
+      const video = document.getElementById('modalVideo');
+      video.src = src; // put path to real video
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      const modal = document.getElementById('modal');
+      const video = document.getElementById('modalVideo');
+      video.pause(); video.src = '';
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+    }
+
+    // simple form handler (replace with real submission)
+    function handleSubmit(e){
+      e.preventDefault();
+      const f = e.target;
+      const data = {
+        name: f.name.value,
+        phone: f.phone.value,
+        email: f.email.value,
+        service: f.service.value,
+        message: f.message.value,
+      };
+      console.log('Заявка отправлена', data);
+      alert('Заявка принята — я свяжусь с вами в рабочее время.');
+      f.reset();
+    }
+<form id="estimateForm">
+  <input type="text" name="name" placeholder="Ваше имя" required>
+  <input type="email" name="email" placeholder="Ваш email" required>
+  <textarea name="message" placeholder="Опишите проект" required></textarea>
+  <button type="submit">Отправить</button>
+</form>
+
+  document.getElementById("estimateForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const token = "8395113544:AAFC5KXRp8VXE1tJWkQuwAjOQT3Pssaxjkc";   // сюда вставь токен от BotFather
+    const chatId = "t.me/client178notifybot";       // сюда вставь chat_id
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+    const name = this.name.value;
+    const email = this.email.value;
+    const message = this.message.value;
+
+    const text = `📩 Новая заявка с сайта:
+👤 Имя: ${name}
+📧 Email: ${email}
+💬 Сообщение: ${message}`;
+
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: text,
+        parse_mode: "HTML"
+      })
+    }).then(res => {
+      if(res.ok){
+        alert("Заявка отправлена! Мы скоро свяжемся с вами.");
+        this.reset();
+      } else {
+        alert("Ошибка при отправке. Попробуйте позже.");
+      }
+    });
+  });
+
+    // close modal on backdrop click
+    document.getElementById('modal').addEventListener('click', function(e){
+      if(e.target === this) closeModal();
+    });
+  </script>
+</body>
+</html>
